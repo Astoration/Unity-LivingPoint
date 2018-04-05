@@ -118,3 +118,33 @@ sysinfo.txt
 정신건강을 위해 Task나 delegate, event를 활용한 콜백을 사용하거나
 
 UniRx를 공부해보시는걸 권장드립니다.
+
+## 씬로딩은 왜 막았니...?
+
+PUN(Photon Unity Network)를 사용하고 있다면
+
+PhotoClasses.cs파일을 한번 확인해보자.
+
+```
+namespace UnityEngine.SceneManagement
+{
+    /// <summary>Minimal implementation of the SceneManager for older Unity, up to v5.2.</summary>
+    public class SceneManager
+    {
+        public static void LoadScene(string name)
+        {
+            Application.LoadLevel(name);
+        }
+
+        public static void LoadScene(int buildIndex)
+        {
+			
+            Application.LoadLevel(buildIndex);
+        }
+    }
+}
+```
+
+세상에, 씬매니저를 갈아 치워서 다른 기능을 사용할 수 없게 중복정의된 상태다.
+```#if !UNITY_2017_1_OR_NEWER```로 감싸서 복구해주도록 하자.
+그럼 CreateScene, LoadSceneAsync등을 사용할 수 있게 된다.
