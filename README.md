@@ -125,7 +125,7 @@ PUN(Photon Unity Network)를 사용하고 있다면
 
 PhotoClasses.cs파일을 한번 확인해보자.
 
-```
+```C#
 namespace UnityEngine.SceneManagement
 {
     /// <summary>Minimal implementation of the SceneManager for older Unity, up to v5.2.</summary>
